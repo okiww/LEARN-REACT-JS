@@ -31,13 +31,16 @@ export default class AddPlayer extends Component {
             input : {
                 flex : 1,
                 paddingRight: 20,
-                width: '45%',
-                height: 27
+                width: '70%',
+                height: 27,
+                boderColor: '#6380b3',
+                boderRadius: '10'
             },
             button : {
                 float : 'right',
-                marginRight: 80,
-                width: 180,
+                marginRight: 68,
+                marginTop: 5,
+                width: 100,
                 padding: 10
             }
         }
@@ -45,6 +48,7 @@ export default class AddPlayer extends Component {
         return (
         	<div style={styles.container}>
             	<input onChange={this.onPlayerChanger} value={this.state.name} type="text" placeholder="input player name" style={styles.input} />
+                <br />
             	<button onClick={this.addPlayer} style={styles.button}>Add Player</button>
         	</div>
         );

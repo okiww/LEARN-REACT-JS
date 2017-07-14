@@ -30,7 +30,7 @@ export default class Player extends Component {
         const styles = {
             player : {
                 display : 'flex',
-                padding : 10,
+                padding : 10
             },
             name : {
                 flex : 1
