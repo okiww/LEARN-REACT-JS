@@ -1,6 +1,31 @@
 import React, { Component } from 'react';
 
 export default class Player extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          score: this.props.score
+        }
+        this.plus = this.plus.bind(this);
+        this.minus = this.minus.bind(this);
+    }
+
+    plus(e) {
+        this.setState({
+            score: this.state.score + 10
+        });
+    }
+
+    minus(e) {
+        if (this.state.score === 0) {
+            alert('Tidak bisa dikurang lagi')
+        } else {
+            this.setState({
+                score: this.state.score - 10
+            });
+        }
+    }
+
     render() {
         const styles = {
             player : {
@@ -27,9 +52,9 @@ export default class Player extends Component {
                 </div>     
                 <div style={styles.playScore}>
                     <div>
-                        <button style={styles.button}>-</button>
-                        <span style={styles.score}>{this.props.score}</span>
-                        <button style={styles.button}>+</button>
+                        <button onClick={this.minus} style={styles.button}>-</button>
+                        <span style={styles.score}>{this.state.score}</span>
+                        <button onClick={this.plus} style={styles.button}>+</button>
                     </div>     
                 </div>
              </div>
