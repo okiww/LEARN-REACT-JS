@@ -30,7 +30,7 @@ export default class Player extends Component {
         const styles = {
             player : {
                 display : 'flex',
-                padding : 10
+                padding : 10,
             },
             name : {
                 flex : 1
@@ -46,7 +46,7 @@ export default class Player extends Component {
             }
         }
         return (
-             <div style={styles.player}>
+            <div style={styles.player}>
                 <div style={styles.name}>
                     {/* call props name*/}
                     {this.props.name}
@@ -58,7 +58,7 @@ export default class Player extends Component {
                         <button onClick={this.plus} style={styles.button}>+</button>
                     </div>     
                 </div>
-             </div>
+            </div>
         );
     }
 }

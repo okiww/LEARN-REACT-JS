@@ -26,7 +26,7 @@ export default class AddPlayer extends Component {
 
         const styles = {
             container : {
-                padding : 10
+                padding : 10,
             },
             input : {
                 flex : 1,

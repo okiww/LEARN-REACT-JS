@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Players from './Players';
 import AddPlayer from './AddPlayer';
+import Header from './Header';
+import Footer from './Footer';
 
 export default class Leaderboard extends Component {
 	constructor(props) {
@@ -12,7 +14,8 @@ export default class Leaderboard extends Component {
     	];
 
     	this.state = {
-    		members : players
+    		members : players,
+    		handmark : "okky muhamad budiman"
     	}
 
     	this.onPlayerAdd = this.onPlayerAdd.bind(this);
@@ -37,11 +40,13 @@ export default class Leaderboard extends Component {
 
         return (
         	<div style={styles.container}>
+        		<Header />
             	<h1> Leaderboard </h1>
             	{/*  passing props members with value this.state.members*/}
             	<Players members={this.state.members}/>
             {/* get value from props onAdd and passing to function onPlayerAdd*/}
             	<AddPlayer onAdd={this.onPlayerAdd}/>
+            	<Footer title={this.state.handmark}/>
         	</div>
         );
     }
