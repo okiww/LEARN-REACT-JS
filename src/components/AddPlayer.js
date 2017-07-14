@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class AddPlayer extends Component {
     constructor(props) {
@@ -33,10 +35,10 @@ export default class AddPlayer extends Component {
                 paddingRight: 20,
                 width: '70%',
                 height: 27,
-                boderColor: '#6380b3',
-                boderRadius: '10'
+                boderColor: '#6380b3'
             },
             button : {
+                className: 'btn btn-primary',
                 float : 'right',
                 marginRight: 68,
                 marginTop: 5,
@@ -49,7 +51,7 @@ export default class AddPlayer extends Component {
         	<div style={styles.container}>
             	<input onChange={this.onPlayerChanger} value={this.state.name} type="text" placeholder="input player name" style={styles.input} />
                 <br />
-            	<button onClick={this.addPlayer} style={styles.button}>Add Player</button>
+            	<Button type="button" color="danger" className="" onClick={this.addPlayer} style={styles.button}>Add Player</Button>
         	</div>
         );
     }

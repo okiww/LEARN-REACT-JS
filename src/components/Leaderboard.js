@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Players from './Players';
 import AddPlayer from './AddPlayer';
 import Header from './Header';
-import Footer from './Footer';
 
 export default class Leaderboard extends Component {
 	constructor(props) {
