@@ -48,6 +48,7 @@ export default class Player extends Component {
         return (
              <div style={styles.player}>
                 <div style={styles.name}>
+                    {/* call props name*/}
                     {this.props.name}
                 </div>     
                 <div style={styles.playScore}>
