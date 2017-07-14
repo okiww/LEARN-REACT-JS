@@ -1,9 +1,8 @@
 import React from 'react';
+import Leaderboard from './components/Leaderboard';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <Leaderboard />,
   document.getElementById('root')
 );
