@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class Player extends Component {
     constructor(props) {
@@ -53,9 +55,9 @@ export default class Player extends Component {
                 </div>     
                 <div style={styles.playScore}>
                     <div>
-                        <button onClick={this.minus} style={styles.button}>-</button>
+                        <Button outline color="success" onClick={this.minus} style={styles.button}>-</Button>
                         <span style={styles.score}>{this.state.score}</span>
-                        <button onClick={this.plus} style={styles.button}>+</button>
+                        <Button outline color="success" onClick={this.plus} style={styles.button}>+</Button>
                     </div>     
                 </div>
             </div>

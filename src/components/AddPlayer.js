@@ -21,7 +21,12 @@ export default class AddPlayer extends Component {
 
     //this function create new props onAdd
     addPlayer(e) {
-        this.props.onAdd(this.state.name)
+        console.log(this.state.name.length)
+        if (this.state.name.length !== 0) {
+            this.props.onAdd(this.state.name)
+        } else {
+            alert('please input name first')
+        }
     }
 
     render() {
@@ -51,7 +56,7 @@ export default class AddPlayer extends Component {
         	<div style={styles.container}>
             	<input onChange={this.onPlayerChanger} value={this.state.name} type="text" placeholder="input player name" style={styles.input} />
                 <br />
-            	<Button type="button" color="danger" className="" onClick={this.addPlayer} style={styles.button}>Add Player</Button>
+            	<Button type="button" outline color="primary" onClick={this.addPlayer} style={styles.button}>Add Player</Button>
         	</div>
         );
     }
