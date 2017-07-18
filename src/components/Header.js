@@ -1,8 +1,42 @@
 import React, { Component } from 'react';
-import { Badge } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default class Header extends Component {
+	constructor(props) {
+	    super(props);
+	    this.state = {
+	      modal: false,
+	      username: ""
+	    };
+
+	    this.toggle = this.toggle.bind(this);
+	}
+
+  	toggle() {
+    	this.setState({
+      		modal: !this.state.modal
+    	});
+  	}
+
+  	componentDidMount() {
+        this.UserList();
+    }
+
+    UserList() {
+        fetch(`http://localhost:3000/api/v1/user`)
+        .then(response => response.json())
+        .then(json => {
+        	var name = "";
+            json.map(function(data) {
+            	name = data.name
+            });
+            this.setState({
+                username : name
+            })
+        });
+    }
+    
     render() {
     	const styles = 
     	{
@@ -101,53 +135,68 @@ export default class Header extends Component {
 				"cursor":"pointer",
 				"width":"33.3333%"
 			},
-			sub_menu_child_3_a_1_1: {"width":"2.4rem","height":"2.4rem","margin":"0px auto","position":"relative","pointerEvents":"none"},
-			sub_menu_child_3_a_1_1_1: {"width":"2.4rem","height":"2.4rem","backgroundSize":"100%","backgroundPosition":"0px 0px","backgroundImage":"url(&quot;https://www.salestockindonesia.com/assets/images/icons/icon-search-black-80-6b78039e.png&quot;)"}
+			sub_menu_child_3_a_1_1: {
+				"width":"2.4rem",
+				"height":"2.4rem",
+				"margin":"0px auto",
+				"position":"relative",
+				"pointerEvents":"none"
+			},
+			sub_menu_child_3_a_1_1_1: {
+				"width":"2.4rem",
+				"height":"2.4rem",
+				"backgroundSize":"100%",
+				"backgroundPosition":"0px 0px",
+				"backgroundImage":"url(&quot;https://www.salestockindonesia.com/assets/images/icons/icon-search-black-80-6b78039e.png&quot;)"
+			}
     	}
 
         return (
             <div style={styles.menu}>
-			  <div style={styles.sub_menu}>
-			    <div style={styles.sub_menu_child}>
-			      <div style={styles.sub_menu_child_1}>
-			        <a data-qa-id="qa_hamburger_menu" data-track-context="HAMBURGER_MENU" style={styles.a_header}>
-			          <div style={styles.b_header}>
-			            <div style={styles.c_header}>
-			            </div>
-			          </div>
-			        </a>
-			      </div>
-			      <div style={styles.spacing}>&nbsp;
-			      </div>
-			      <div style={styles.sub_menu_child_2}>
-			        <a href="/" data-qa-id="qa_salestock_logo_header" data-track-context="SALESTOCK_LOGO_HEADER" style={styles.sub_menu_child_2_a}>
-			          <div>
-			            <img src="https://www.salestockindonesia.com/assets/images/logo-ss-34f2d4dd.png" alt="Sale Stock Indonesia" data-track-context="SALESTOCK_LOGO_HEADER" width="119" height="37.75" style={styles.sub_menu_child_2_img} />
-			          </div>
-			        </a>
-			      </div>
-			      <div style={styles.sub_menu_child_3}>
-			        <a data-qa-id="qa_search_button" data-track-context="SEARCH_LINK" style={styles.sub_menu_child_3_a_1}>
-			            <h5>Heading <Badge>New</Badge></h5>
-			        </a>
-			        {/*<a data-qa-id="qa_favourite_button" style="display: table-cell; vertical-align: middle; padding: 1rem 0px; color: rgb(51, 51, 51); text-align: center; text-decoration: none; position: relative; min-width: 4.4rem; cursor: pointer; width: 33.3333%;">
-			          <div style="width: 2.4rem; height: 2.4rem; margin: 0px auto; position: relative; pointer-events: none;">
-			            <div style="width: 2.4rem; height: 2.4rem; background-size: 100%; background-position: 0px 0px; background-image: url(&quot;https://www.salestockindonesia.com/assets/images/icons/icon-heart-line-black-80-c9e0fb80.png&quot;);">
-			            </div>
-			          </div>
-			        </a>
-			        <a data-qa-id="qa_cart_button" data-track-context="CART_LINK" style="display: table-cell; vertical-align: middle; padding: 1rem 0px; color: rgb(51, 51, 51); text-align: center; text-decoration: none; position: relative; min-width: 4.4rem; cursor: pointer; width: 33.3333%;">
-			          <div style="width: 2.4rem; height: 2.4rem; margin: 0px auto; position: relative; pointer-events: none;">
-			            <div style="width: 2.4rem; height: 2.4rem; background-size: 100%; background-position: 0px 0px; background-image: url(&quot;https://www.salestockindonesia.com/assets/images/icons/icon-cart-line-black-80-1a2b2e1f.png&quot;);">
-			            </div>
-			          </div>
-			        </a>*/}
-			      </div>
-			      
-			    </div>
-			  </div>
+			  	<div style={styles.sub_menu}>
+			    	<div style={styles.sub_menu_child}>
+			      		<div style={styles.spacing}>&nbsp;</div>
+				      	<div style={styles.sub_menu_child_2}>
+				        	<a href="/" data-qa-id="qa_salestock_logo_header" data-track-context="SALESTOCK_LOGO_HEADER" style={styles.sub_menu_child_2_a}>
+				          		<div>
+				            		{/*<img src="https://selena.id/images/selena-logo.svg" alt="Selena" data-track-context="SALESTOCK_LOGO_HEADER" width="119" height="37.75" style={styles.sub_menu_child_2_img} />*/}
+				            		<h2><Badge>Savannah</Badge></h2>
+				          		</div>
+				        	</a>
+				      	</div>
+				      	<div style={styles.sub_menu_child_3}>
+				        	<a data-qa-id="qa_search_button" data-track-context="SEARCH_LINK" style={styles.sub_menu_child_3_a_1} onClick={this.toggle}>
+				            	Buat Aktivitas
+				        	</a>
+				        	<a data-qa-id="qa_search_button" data-track-context="SEARCH_LINK" style={styles.sub_menu_child_3_a_1}>
+				            	<h5><Badge>{this.state.username}</Badge></h5>
+				        	</a>
+					        {/*<a data-qa-id="qa_favourite_button" style="display: table-cell; vertical-align: middle; padding: 1rem 0px; color: rgb(51, 51, 51); text-align: center; text-decoration: none; position: relative; min-width: 4.4rem; cursor: pointer; width: 33.3333%;">
+					          <div style="width: 2.4rem; height: 2.4rem; margin: 0px auto; position: relative; pointer-events: none;">
+					            <div style="width: 2.4rem; height: 2.4rem; background-size: 100%; background-position: 0px 0px; background-image: url(&quot;https://www.salestockindonesia.com/assets/images/icons/icon-heart-line-black-80-c9e0fb80.png&quot;);">
+					            </div>
+					          </div>
+					        </a>
+					        <a data-qa-id="qa_cart_button" data-track-context="CART_LINK" style="display: table-cell; vertical-align: middle; padding: 1rem 0px; color: rgb(51, 51, 51); text-align: center; text-decoration: none; position: relative; min-width: 4.4rem; cursor: pointer; width: 33.3333%;">
+					          <div style="width: 2.4rem; height: 2.4rem; margin: 0px auto; position: relative; pointer-events: none;">
+					            <div style="width: 2.4rem; height: 2.4rem; background-size: 100%; background-position: 0px 0px; background-image: url(&quot;https://www.salestockindonesia.com/assets/images/icons/icon-cart-line-black-80-1a2b2e1f.png&quot;);">
+					            </div>
+					          </div>
+					        </a>*/}
+				      	</div> 
+			    	</div>
+			  	</div>
+		  		<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+	          		<ModalHeader toggle={this.toggle}>Buat Aktivitas</ModalHeader>
+	          		<ModalBody>
+	            		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	          		</ModalBody>
+	          		<ModalFooter>
+	            		<Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+	            		<Button color="secondary" onClick={this.toggle}>Cancel</Button>
+	          		</ModalFooter>
+	        	</Modal>
 			</div>
-			
         );
     }
 }

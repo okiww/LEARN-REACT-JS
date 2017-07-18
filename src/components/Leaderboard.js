@@ -16,10 +16,10 @@ export default class Leaderboard extends Component {
     		members : players
     	}
 
-    	this.onPlayerAdd = this.onPlayerAdd.bind(this);
-	}
+        this.onPlayerAdd = this.onPlayerAdd.bind(this);
+    }
 
-	onPlayerAdd(name) {
+    onPlayerAdd(name) {
 		let new_members = this.state.members
 		new_members.push({id: new_members.length + 1, name: name, score:10})
 
@@ -31,7 +31,16 @@ export default class Leaderboard extends Component {
     render() {
     	//disini bisa get dari API
     	const styles = {
-    		container: {
+            container: {
+                "paddingTop":"4.4rem",
+                "zIndex":"10",
+                "backgroundColor":"red",
+                "paddingBottom":"0px"
+            },
+            cont: {
+                flex:"1 1 0%"
+            },
+    		main: {
     			padding: 60,
     			borderRadius: '0.3rem 0.3rem 0px 0px',
 			    display: 'block',
@@ -40,23 +49,29 @@ export default class Leaderboard extends Component {
 			    top: '50%',
 			    transform: 'translate(-50%, -50%)',
 			    left: '50%',
-			    maxHeight: '100%'
+			    maxHeight: '100%',
+                maxWidth: '60%',
+                marginLeft: '10px'
     		}
     	};
 
         return (
-        	<div>
-        		<div>
-        			<Header />
-        		</div>
-	        	<div style={styles.container}>
-	            	<h1> Leaderboard </h1>
-	            	{/*  passing props members with value this.state.members*/}
-	            	<Players members={this.state.members}/>
-	            {/* get value from props onAdd and passing to function onPlayerAdd*/}
-	            	<AddPlayer onAdd={this.onPlayerAdd}/>
-	        	</div>
-        	</div>
+            <div>
+                <div style={styles.container}>
+                    <span>
+                    	<div style={styles.cont}>
+                    		<Header />
+            	        	<div style={styles.main}>
+            	            	<h1> Leaderboard </h1>
+            	            	
+            	            	<Players members={this.state.members}/>
+            	          
+            	            	<AddPlayer onAdd={this.onPlayerAdd}/>
+            	        	</div>
+                    	</div>
+                    </span>
+                </div>
+            </div>
         );
     }
 }
